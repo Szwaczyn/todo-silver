@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState }from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import Header from './components/header';
+import TodoItem from './components/todoitem'
 
 export default function App() {
 
@@ -10,6 +11,12 @@ export default function App() {
     { text: 'Create an native app', key: 2},
     { text: 'Make a dinner', key: 3},
   ])
+
+  const setAsCompleted = (key) => {
+    setTodos((prevTodos) => {
+      return prevTodos.filter( (item) => item.key != key )
+    })
+  }
 
   return (
     <View style={styles.container}>
@@ -21,7 +28,7 @@ export default function App() {
           <FlatList 
             data={todos}
             renderItem={ ( {item} ) => (
-              <Text>{item.text}</Text>
+              <TodoItem position={item} setAsCompleted={setAsCompleted} />
             )}
           />
         </View>
