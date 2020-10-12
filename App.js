@@ -21,7 +21,7 @@ export default function App() {
   const submitHandler = (text) => {
     setTodos(( prevTodos ) => {
       return [
-        {text: newPosition, key: Math.random().toString() },
+        {text: text, key: Math.random().toString() },
         ...prevTodos
       ]
     })
